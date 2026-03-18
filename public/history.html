@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📜 历史记录 - 🔥 烧饼小摊</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 头部 -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">📜 历史记录</h1>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">🏠 首页</a>
+        <a href="login.html" class="nav-link">🔧 管理</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <!-- 搜索区 -->
+      <section class="search-section">
+        <div class="search-box">
+          <input 
+            type="date" 
+            class="search-input" 
+            id="searchDate"
+            max=""
+          >
+          <button class="search-btn" id="searchBtn">搜索</button>
+        </div>
+      </section>
+
+      <!-- 历史列表 -->
+      <section class="history-section">
+        <div class="history-list" id="historyList">
+          <!-- 历史项由 JS 动态生成 -->
+        </div>
+      </section>
+
+      <!-- 加载更多 -->
+      <div class="load-more" id="loadMore">
+        <button class="load-more-btn">加载更多</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 历史记录详情弹窗 -->
+  <div class="modal" id="historyModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">历史记录</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-item">
+          <span class="detail-label">日期：</span>
+          <span class="detail-value" id="detailDate"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">状态：</span>
+          <span class="detail-value" id="detailStatus"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">位置：</span>
+          <span class="detail-value" id="detailLocation"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">时间：</span>
+          <span class="detail-value" id="detailTime"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">备注：</span>
+          <span class="detail-value" id="detailNote"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" id="modalCancel">关闭</button>
+        <a href="login.html" class="modal-btn modal-btn-edit">✏️ 编辑</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 🔥 烧饼小摊</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>

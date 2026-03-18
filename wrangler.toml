@@ -1,0 +1,14 @@
+name = "shaobing"
+compatibility_date = "2026-03-18"
+
+[site]
+bucket = "./public"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "your_kv_namespace_id"
+
+[vars]
+ADMIN_PASSWORD_HASH = "$2a$10$..."  #  bcrypt 哈希后的密码
+MAX_REVIEWS = 500
+MAX_HISTORY_DAYS = 90

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔧 管理后台 - 🔥 烧饼小摊</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 头部 -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">🔧 管理后台</h1>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">🏠 首页</a>
+        <a href="history.html" class="nav-link">📜 历史</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <!-- 登录提示 -->
+      <div class="login-prompt" id="loginPrompt">
+        <p>🔐 请输入管理员密码以继续</p>
+        <a href="login.html" class="login-btn">去登录</a>
+      </div>
+
+      <!-- 管理内容（登录后显示） -->
+      <div class="admin-content" id="adminContent" style="display: none;">
+        <!-- 选项卡 -->
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="today">今日状态</button>
+          <button class="tab-btn" data-tab="history">历史记录</button>
+          <button class="tab-btn" data-tab="reviews">评价管理</button>
+        </div>
+
+        <!-- 今日状态面板 -->
+        <div class="tab-panel active" id="panel-today">
+          <div class="form-card">
+            <h3 class="form-title">📝 今日状态编辑</h3>
+            <form id="todayForm">
+              <div class="form-group">
+                <label class="form-label">出摊状态</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="status" value="休息"> 休息
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="status" value="出摊中"> 出摊中
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="status" value="已收摊"> 已收摊
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="todayLocation">出摊位置</label>
+                <input type="text" class="form-input" id="todayLocation" placeholder="例如：xx 小区门口">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="todayTime">出摊时间</label>
+                <input type="text" class="form-input" id="todayTime" placeholder="例如：07:00-09:00">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="todayNote">备注信息</label>
+                <textarea class="form-textarea" id="todayNote" placeholder="例如：今天多带了韭菜盒子"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-cancel" id="todayCancel">取消</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 历史记录面板 -->
+        <div class="tab-panel" id="panel-history">
+          <div class="history-manage">
+            <div class="search-box">
+              <input type="date" class="search-input" id="historySearchDate">
+              <button class="search-btn" id="historySearchBtn">搜索</button>
+            </div>
+            <div class="history-table-wrapper">
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>日期</th>
+                    <th>状态</th>
+                    <th>位置</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                  <!-- 由 JS 动态生成 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 评价管理面板 -->
+        <div class="tab-panel" id="panel-reviews">
+          <div class="reviews-manage">
+            <div class="reviews-header">
+              <h3>💬 评价详情</h3>
+              <button class="btn btn-secondary" id="exportReviews">导出</button>
+            </div>
+            <div class="reviews-table-wrapper">
+              <table class="reviews-table">
+                <thead>
+                  <tr>
+                    <th>类型</th>
+                    <th>内容</th>
+                    <th>IP</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="reviewsTableBody">
+                  <!-- 由 JS 动态生成 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 编辑历史弹窗 -->
+  <div class="modal" id="editHistoryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">编辑历史记录</h3>
+        <button class="modal-close" id="editHistoryModalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="editHistoryForm">
+          <input type="hidden" id="editHistoryDate">
+          <div class="form-group">
+            <label class="form-label">出摊状态</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="editStatus" value="休息"> 休息
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="editStatus" value="出摊中"> 出摊中
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="editStatus" value="已收摊"> 已收摊
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editHistoryLocation">出摊位置</label>
+            <input type="text" class="form-input" id="editHistoryLocation">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editHistoryTime">出摊时间</label>
+            <input type="text" class="form-input" id="editHistoryTime">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editHistoryNote">备注信息</label>
+            <textarea class="form-textarea" id="editHistoryNote"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" id="editHistoryCancel">取消</button>
+        <button class="modal-btn modal-btn-primary" id="editHistorySave">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 🔥 烧饼小摊</p>
+    </div>
+  </footer>
+
+  <!-- 反馈弹窗 -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

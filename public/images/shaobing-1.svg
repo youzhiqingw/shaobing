@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <rect fill="#F5A623" width="640" height="360"/>
+  <circle cx="320" cy="180" r="80" fill="#E8532D" opacity="0.8"/>
+  <circle cx="320" cy="180" r="60" fill="#F5A623" opacity="0.6"/>
+  <circle cx="320" cy="180" r="40" fill="#E8532D" opacity="0.4"/>
+  <text x="320" y="300" font-family="Arial, sans-serif" font-size="24" fill="#1A1A1A" text-anchor="middle">🔥 烧饼小摊</text>
+  <text x="320" y="330" font-family="Arial, sans-serif" font-size="16" fill="#666666" text-anchor="middle">图片占位符 - 请替换为真实烧饼图片</text>
+</svg>
